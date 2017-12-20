@@ -1,6 +1,7 @@
 language: java
 jdk:
 - oraclejdk8
+before_install:
 - chmod +x mvnw
 install:
 - mvn -N io.takari:maven:wrapper
