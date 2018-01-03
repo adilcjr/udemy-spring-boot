@@ -1,4 +1,4 @@
-package br.com.edea.api.controller;
+package br.com.edea.api.controllers;
 
 import javax.validation.Valid;
 
