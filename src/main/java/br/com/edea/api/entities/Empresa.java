@@ -16,62 +16,75 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import br.com.edea.api.entities.Funcionario;
+
 @Entity
 @Table(name="empresa")
 public class Empresa implements Serializable {
 
 	private static final long serialVersionUID = 6420376604508272572L;
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name="razao_social", nullable=false)
 	private String razaoSocial;
-	
-	@Column(name="cnpj", nullable=false)
 	private String cnpj;
-	
-	@Column(name="data_criacao", nullable=false)
 	private Date dataCriacao;
-	
-	@Column(name="data_atualizacao", nullable=false)
 	private Date dataAtualizacao;
-	
-	@OneToMany(mappedBy="empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Funcionario> funcionarios;
 	
 	public Empresa() { }
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	@Column(name="razao_social", nullable=false)
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
 	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
 	}
+	
+	@Column(name="cnpj", nullable=false)
 	public String getCnpj() {
 		return cnpj;
 	}
+	
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	
+	@Column(name="data_criacao", nullable=false)
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
+	
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
+	
+	@Column(name="data_atualizacao", nullable=false)
 	public Date getDataAtualizacao() {
 		return dataAtualizacao;
 	}
+	
 	public void setDataAtualizacao(Date dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
+	}
+	
+	@OneToMany(targetEntity=Funcionario.class, mappedBy="Empresa", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+
+	public void setFuncionarios(List<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
 	}
 	
 	@PreUpdate
